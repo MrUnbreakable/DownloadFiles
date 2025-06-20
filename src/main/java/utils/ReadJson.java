@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.io.IOException;
 
-import static org.apache.commons.lang3.StringUtils.isBlank;
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 import static utils.DownLoadFile.downloadFile;
 
 /**
@@ -34,7 +34,8 @@ public class ReadJson {
                 System.out.println(title + "下载完成");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.print("execute failed:" + e);
+            //e.printStackTrace();
         }
     }
 
