@@ -15,14 +15,14 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 public class DownLoadFile {
     public static void downloadFile(String downloadUrl, String path){
 
-        URL url = null;
+        URL url;
         try {
             url = new URL(downloadUrl);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
         //这里没有使用 封装后的ResponseEntity 就是也是因为这里不适合一次性的拿到结果，放不下content,会造成内存溢出
-        HttpURLConnection connection = null;
+        HttpURLConnection connection;
         try {
             connection = (HttpURLConnection) url.openConnection();
         } catch (IOException e) {
@@ -42,7 +42,7 @@ public class DownLoadFile {
              OutputStream outputStream = Files.newOutputStream(file.toPath())){
             //这里也很关键每次读取的大小为5M 不一次性读取完
             byte[] buffer = new byte[1024 * 1024 * 5];
-            int len = 0;
+            int len;
             while ((len = inputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, len);
             }
